@@ -1,0 +1,28 @@
+[project]
+name = "orthrus"
+version = "0.0.1"
+requires-python = "==3.10.*"
+dependencies = [
+    "numpy==1.24.*",
+    "pandas",
+    "jupyter",
+    "notebook",
+    "tqdm",
+    "torch==2.2.*",
+    "seaborn",
+    "scikit-learn",
+    "lightning",
+    "wandb",
+    "pyfaidx",
+    "pytabix",
+    "cython",
+    "absl-py",
+    "pytest",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+extra-index-url = ["https://download.pytorch.org/whl/cu121"]
