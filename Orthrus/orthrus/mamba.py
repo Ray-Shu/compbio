@@ -8,8 +8,9 @@ import numpy as np
 from torch.utils.checkpoint import checkpoint
 
 from importlib.metadata import version, PackageNotFoundError
-from mamba_ssm.modules.mamba_simple import Mamba, Block
-from mamba_ssm.ops.triton.layernorm import RMSNorm, layer_norm_fn, rms_norm_fn
+from mamba_ssm.modules.mamba_simple import Mamba
+from mamba_ssm.modules.block import Block
+from mamba_ssm.ops.triton.layer_norm import RMSNorm, layer_norm_fn, rms_norm_fn
 
 
 class BiMamba(nn.Module):
@@ -95,7 +96,7 @@ def create_block(
     block = Block(
         d_model,
         mix_cls,
-        # mlp_cls=nn.Identity, # comment out for earlier mamba version
+        mlp_cls=nn.Identity,  # required arg as of mamba-ssm 2.x
         norm_cls=norm_cls,
         fused_add_norm=fused_add_norm,
         residual_in_fp32=residual_in_fp32,

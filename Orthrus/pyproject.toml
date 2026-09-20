@@ -8,7 +8,7 @@ dependencies = [
     "jupyter",
     "notebook",
     "tqdm",
-    "torch==2.2.*",
+    "torch==2.9.*",
     "seaborn",
     "scikit-learn",
     "lightning",
@@ -18,6 +18,9 @@ dependencies = [
     "cython",
     "absl-py",
     "pytest",
+    "causal-conv1d",
+    "mamba-ssm",
+    "ipykernel",
 ]
 
 [build-system]
@@ -25,4 +28,12 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.uv]
-extra-index-url = ["https://download.pytorch.org/whl/cu121"]
+# cu128: required for Blackwell (RTX 50-series, sm_120). cu121 has no sm_120 kernels.
+extra-index-url = ["https://download.pytorch.org/whl/cu128"]
+
+# Prebuilt CUDA wheels. Neither project publishes usable wheels to PyPI (sdist only,
+# which needs nvcc and ~1h of compiling), so we pin the GitHub release artifacts that
+# match python 3.10 / torch 2.9 / CUDA 12 and carry sm_120 cubins.
+[tool.uv.sources]
+causal-conv1d = { url = "https://github.com/Dao-AILab/causal-conv1d/releases/download/v1.7.0/causal_conv1d-1.7.0+cu12torch2.9cxx11abiTRUE-cp310-cp310-linux_x86_64.whl" }
+mamba-ssm = { url = "https://github.com/state-spaces/mamba/releases/download/v2.3.2.post1/mamba_ssm-2.3.2.post1+cu12torch2.9cxx11abiTRUE-cp310-cp310-linux_x86_64.whl" }
