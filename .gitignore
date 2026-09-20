@@ -1,0 +1,8 @@
+Orthrus/orthrus.egg-info/
+Orthrus/.vscode
+Orthrus/orthrus/__pycache__
+Orthrus/orthrus/_sequence.c
+Orthrus/orthrus/_sequence.cpython-310-x86_64-linux-gnu.so
+Orthrus/tests/__pycache__/
+Orthrus/build
+Orthrus/slurm/slurm_out
