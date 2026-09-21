@@ -21,6 +21,9 @@ dependencies = [
     "causal-conv1d",
     "mamba-ssm",
     "ipykernel",
+    "genomekit>=6",
+    "huggingface-hub>=0.24",
+    "transformers<4.46",
 ]
 
 [build-system]
