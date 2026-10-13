@@ -39,9 +39,9 @@ abc
 
 ---
 ### Metric Names
-
-1. Fluorescence intensity shows how much reporter protein the cell is producing. Brighter signal = more protein. This gives us a direct metric for protein expression. 
-2. 
+1. Immune response: RIG-I, MDA5, IFIT fold changes (want < 1)
+2. Replication rate: GFP fold change ÷ nsP3 fold change (want high ratio)
+3. Protein expression: GFP fold change alone (want > 1)
 
 ---
 ### Terminology 
