@@ -6,3 +6,6 @@ Orthrus/orthrus/_sequence.cpython-310-x86_64-linux-gnu.so
 Orthrus/tests/__pycache__/
 Orthrus/build
 Orthrus/slurm/slurm_out
+models/
+data/smoke_test/
+.vibe-wise/
