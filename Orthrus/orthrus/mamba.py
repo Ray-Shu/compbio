@@ -8,9 +8,16 @@ import numpy as np
 from torch.utils.checkpoint import checkpoint
 
 from importlib.metadata import version, PackageNotFoundError
-from mamba_ssm.modules.mamba_simple import Mamba
-from mamba_ssm.modules.block import Block
-from mamba_ssm.ops.triton.layer_norm import RMSNorm, layer_norm_fn, rms_norm_fn
+try:
+    from mamba_ssm.modules.mamba_simple import Mamba
+    from mamba_ssm.modules.block import Block
+    from mamba_ssm.ops.triton.layer_norm import RMSNorm, layer_norm_fn, rms_norm_fn
+except ImportError:
+    # mamba-ssm is CUDA-only (not installed on macOS). Same parameter names, so
+    # checkpoints load either way; the fallback is slow, fine for inference.
+    import warnings
+    warnings.warn("mamba_ssm not available; using slow pure-PyTorch Mamba (orthrus.mamba_torch)")
+    from orthrus.mamba_torch import Mamba, Block, RMSNorm
 
 
 class BiMamba(nn.Module):
